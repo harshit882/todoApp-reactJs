@@ -1,0 +1,8 @@
+
+.card-body{
+    background: rgb(25,41,108);
+background: linear-gradient(90deg, rgba(25,41,108,1) 6%, rgba(43,106,116,1) 86%);
+    /* border-radius: 12px; */
+    color: rgb(245, 222, 222);
+    
+}
