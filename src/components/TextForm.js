@@ -1,26 +1,38 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import "../css/TextForm.css";
 import Card from "./Card";
 export default function TextForm(props) {
   const [count, setcount] = useState(0);
   const [toDo, setToDo] = useState({
     id: "",
-    titleName: "",
-    task: "",
   });
   const [toDoList, setToDoList] = useState([]);
+
   let handelKey = () => {
     setcount(count + 1);
-    // setToDo()
+    setToDo({
+      id: Math.floor(Math.random() * 999) + 100,
+    });
     setToDoList([
       ...toDoList,
       {
-        id: Math.floor(Math.random() * 999) + 100,
+        id: toDo.id,
         titleName: props.input1,
         task: props.input2,
       },
     ]);
   };
+  function delete_car(id) {
+    // for deleting the current card
+    let updatedArr = toDoList.filter((currEle) => {
+      return currEle.id !== id;
+    });
+    setToDoList(updatedArr);
+    setcount(count - 1);
+  }
+  function handelEdit() {
+    //Edit the current card
+  }
 
   return (
     <>
@@ -58,7 +70,13 @@ export default function TextForm(props) {
         </div>
       </div>
       {/* <Card titleName={toDo.titleName} toDoList={toDoList} task={toDo.task} id={toDo.id} count={count}/> */}
-      <Card toDoList={toDoList} count={count} />
+      <Card
+        toDoList={toDoList}
+        count={count}
+        _id={toDo.id}
+        delete_car={delete_car}
+        handelEdit={handelEdit}
+      />
     </>
   );
 }
